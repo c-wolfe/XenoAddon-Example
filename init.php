@@ -14,7 +14,16 @@
     class ExampleAddon extends Addon {
 
         public function __construct() {
-            // Instead of having a `$config` variable, we have a constructor to make things easier
+            /*
+             *
+             * Instead of having a `$config` variable, we have a constructor to make things easier
+             *
+             * @param  Short name
+             * @param  Visible Name
+             * @param  Current Version
+             * @param  Authors
+             * @param  Load type (HEADER, PAGE, FOOTER, MANUAL)
+             */
             parent::__construct("example_addon", "Example Addon", "1.0.0-DEV", ["Rasmus Lerdorf"], Addon\AddonType::PAGE);
         }
 
@@ -50,8 +59,7 @@
     $Rexample = new ExampleAddon();
 
     // Add a page so that you can see the addon's page :DDD
-    $Rexample->getRouting()
-        ->addRoute('example', 'addons/example_addon/view');
+    $Rexample->getRouting()->addRoute('example', 'addons/example_addon/view');
 
     // Initialize our addon so that XenoPanel will load it :)
     $Rexample->initialize();
