@@ -13,20 +13,26 @@
      */
     class ExampleAddon extends Addon {
 
+        /**
+         * ExampleAddon constructor.
+         */
         public function __construct() {
-            /*
+            /**
              *
              * Instead of having a `$config` variable, we have a constructor to make things easier
              *
-             * @param  Short name
-             * @param  Visible Name
-             * @param  Current Version
-             * @param  Authors
-             * @param  Load type (HEADER, PAGE, FOOTER, MANUAL)
+             * @param  $name    string Short name
+             * @param  $title   string Visible Name
+             * @param  $version string Current Version
+             * @param  $authors array Authors
+             * @param  $type    Addon\AddonType Load type (HEADER, PAGE, FOOTER, MANUAL)
              */
             parent::__construct("example_addon", "Example Addon", "1.0.0-DEV", ["Rasmus Lerdorf"], Addon\AddonType::PAGE);
         }
 
+        /**
+         * @return bool Whether we loaded successfully or not
+         */
         public function onLoad() {
             // Load the parent `Addon` object to make sure shit is gucci
             $success = parent::onLoad();
@@ -40,6 +46,9 @@
             return $success;
         }
 
+        /**
+         * @return bool Whether we enabled successfully or not
+         */
         public function onEnable() {
             // Enable the parent `Addon` object. Currently, there's no use doing this, but we need to make sure that we're future-proof
             $success = parent::onEnable();
@@ -59,7 +68,8 @@
     $Rexample = new ExampleAddon();
 
     // Add a page so that you can see the addon's page :DDD
-    $Rexample->getRouting()->addRoute('example', 'addons/example_addon/view');
+    $Rexample->getRouting()
+        ->addRoute('example', 'addons/example_addon/view');
 
     // Initialize our addon so that XenoPanel will load it :)
     $Rexample->initialize();
